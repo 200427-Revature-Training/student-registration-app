@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import './register.component.css';
+import { Student } from '../../../models/Student';
 
+/* Props represent data that this component is dependent upon */
 interface RegisterComponentProps {
     setView: (str: 'STUDENT_LIST' | 'REGISTER') => void;
+    addStudent: (student: Student) => void;
 }
+
 export const RegisterComponent: React.FC<RegisterComponentProps> = (props) => {
 
     const [firstName, setFirstName] = useState('');    
@@ -11,6 +15,13 @@ export const RegisterComponent: React.FC<RegisterComponentProps> = (props) => {
     const [studentID, setStudentID] = useState('');
     const [email, setEmail] = useState('');
 
+    const saveStudent = () => {
+        const student = {
+            firstName, lastName, studentID, email
+        };
+        props.addStudent(student);
+        props.setView('STUDENT_LIST');
+    }
 
     return (
         <section id="register-container">
@@ -56,7 +67,7 @@ export const RegisterComponent: React.FC<RegisterComponentProps> = (props) => {
             <div>
                 <button onClick={() => props.setView('STUDENT_LIST')}>Back
                 </button>
-                <button>Save</button>
+                <button onClick={() => saveStudent()}>Save</button>
             </div>
 
             </form>

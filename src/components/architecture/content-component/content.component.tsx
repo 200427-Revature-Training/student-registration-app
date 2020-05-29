@@ -53,7 +53,7 @@ export const ContentComponent: React.FC = () => {
         // Returning a view based on the value of the state 'view'
         switch (view) {
             case childViews.studentList: return <StudentListComponent students={students} setView={setView} />;
-            case childViews.register: return <RegisterComponent setView={setView} />
+            case childViews.register: return <RegisterComponent setView={setView} addStudent={addStudent} />
             default: return <React.Fragment />
         }
     }
